@@ -1,0 +1,1222 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>IMGA S.L.P. — Ingeniería Minera, Geológica y Ambiental</title>
+<meta name="description" content="Ingeniería Minera, Geológica y Ambiental, S.L.P. — Minería, geología, aguas, medio ambiente, topografía, industria y derecho minero y ambiental desde Castellón." />
+<link rel="icon" type="image/png" href="assets/logo-globe.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* IMGA S.L.P. — minimal earth-green design system */
+:root {
+  --bg: #FAFAF7;
+  --bg-alt: #F2F0E9;
+  --bg-sage: #E8ECE3;
+  --ink: #1C1D1A;
+  --ink-2: #4A4D47;
+  --ink-3: #8A8D86;
+  --line: rgba(28,29,26,0.08);
+  --line-2: rgba(28,29,26,0.14);
+  --sage: #9CB091;        /* primary green */
+  --sage-deep: #46583F;   /* dark green */
+  --sage-soft: #D8E0CE;   /* pastel green */
+  --earth: #D9CDB4;       /* pastel earth */
+  --earth-soft: #ECE3D0;
+  --accent: #6E8163;
+  --radius: 20px;
+  --radius-lg: 28px;
+  --radius-sm: 12px;
+  --maxw: 1180px;
+  --nav-h: 56px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: "Inter Tight", "Inter", sans-serif;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  margin: 0;
+  font-weight: 600;
+}
+h1 { font-size: clamp(44px, 7vw, 88px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 600; }
+h2 { font-size: clamp(34px, 4.8vw, 56px); line-height: 1.06; letter-spacing: -0.028em; }
+h3 { font-size: clamp(22px, 2.4vw, 30px); line-height: 1.15; letter-spacing: -0.018em; }
+h4 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+p { margin: 0 0 1em; color: var(--ink-2); text-wrap: pretty; }
+a { color: inherit; text-decoration: none; }
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: inline-block;
+}
+
+/* Nav */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--nav-h);
+  background: rgba(250,250,247,0.75);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 600; letter-spacing: -0.01em; font-size: 15px;
+}
+.nav-brand img { width: 22px; height: 22px; object-fit: contain; }
+.nav-links {
+  display: flex; gap: 4px; list-style: none; padding: 0; margin: 0;
+  font-size: 13.5px;
+}
+.nav-links > li { position: relative; }
+.nav-links a, .nav-links button {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 8px 12px; border-radius: 999px;
+  color: var(--ink-2); background: none; border: 0; cursor: pointer;
+  font-family: inherit; font-size: inherit;
+  transition: background 180ms ease, color 180ms ease;
+}
+.nav-links a:hover, .nav-links button:hover { color: var(--ink); background: rgba(28,29,26,0.04); }
+.nav-links a.active { color: var(--ink); }
+.nav-links .caret { width: 8px; height: 8px; opacity: 0.5; }
+
+.dropdown {
+  position: absolute; top: calc(100% + 6px); left: 0;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 6px;
+  min-width: 240px;
+  box-shadow: 0 12px 40px rgba(28,29,26,0.08);
+  opacity: 0; visibility: hidden; transform: translateY(-4px);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+}
+.nav-links li:hover > .dropdown,
+.nav-links li:focus-within > .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown a { display: block; padding: 10px 14px; border-radius: 10px; font-size: 14px; color: var(--ink); }
+.dropdown a:hover { background: var(--bg-sage); }
+
+.nav-burger {
+  display: none;
+  width: 36px; height: 36px; border: 0; background: none;
+  border-radius: 10px; cursor: pointer;
+}
+.nav-burger span { display: block; width: 18px; height: 1.5px; background: var(--ink); margin: 4px auto; transition: transform 200ms, opacity 200ms; }
+.nav-burger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+  background: rgba(250,250,247,0.98);
+  backdrop-filter: blur(20px);
+  padding: 20px 22px 40px;
+  overflow-y: auto;
+  z-index: 99;
+}
+.mobile-menu.open { display: block; }
+.mobile-menu a { display: block; padding: 14px 4px; font-size: 20px; color: var(--ink); border-bottom: 1px solid var(--line); letter-spacing: -0.01em; }
+.mobile-menu a.sub { font-size: 15px; padding-left: 16px; color: var(--ink-2); }
+.mobile-menu .section-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); margin-top: 18px; margin-bottom: 6px; }
+
+/* Layout */
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+.page { display: none; }
+.page.active { display: block; animation: fadeIn 380ms ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+section { padding: 100px 0; }
+section.tight { padding: 64px 0; }
+section.hero-pad { padding: 140px 0 100px; }
+
+/* Hero */
+.hero {
+  min-height: calc(100svh - var(--nav-h));
+  display: flex; align-items: center; justify-content: center;
+  padding: 80px 22px;
+  background: radial-gradient(ellipse at 50% 30%, #EEF1E7 0%, var(--bg) 60%);
+  position: relative;
+  overflow: hidden;
+}
+.hero-inner { text-align: center; max-width: 920px; position: relative; z-index: 2; }
+.hero h1 { margin-bottom: 24px; }
+.hero h1 .muted { color: var(--ink-3); display: block; font-weight: 500; }
+
+/* Institutional hero title — full company name in caps */
+.hero h1.hero-company {
+  font-family: "Inter Tight", "Inter", sans-serif;
+  font-size: clamp(30px, 4.6vw, 62px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.hero-company .hero-company-tag {
+  display: inline-block;
+  font-size: 0.5em;
+  letter-spacing: 0.18em;
+  color: var(--sage-deep);
+  vertical-align: 0.55em;
+  font-weight: 600;
+  margin-left: 10px;
+}
+.hero-company .muted {
+  font-family: "Inter", sans-serif;
+  text-transform: none;
+  font-size: clamp(16px, 1.6vw, 20px);
+  letter-spacing: 0;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+/* Area eyebrow — same DNA as top hero eyebrow but reused inside cards */
+.area-eyebrow {
+  color: var(--sage-deep) !important;
+  font-size: 11.5px !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: inline-block;
+}
+.cap-card.feature .area-eyebrow {
+  color: #D8E0CE !important;
+}
+.hero p.lead { font-size: clamp(17px, 1.6vw, 21px); color: var(--ink-2); max-width: 640px; margin: 0 auto 40px; }
+.hero-cta { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 24px; border-radius: 999px;
+  font-size: 15px; font-weight: 500; letter-spacing: -0.005em;
+  border: 0; cursor: pointer; font-family: inherit;
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+}
+.btn-primary { background: var(--sage-deep); color: #fff; }
+.btn-primary:hover { background: var(--ink); }
+.btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line-2); }
+.btn-ghost:hover { background: var(--bg-alt); }
+.btn .arrow { display: inline-block; transition: transform 220ms ease; }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* Floating globe in hero */
+.hero-globe {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none; z-index: 1;
+  opacity: 0.06;
+}
+.hero-globe img { width: min(78vmin, 720px); animation: floaty 14s ease-in-out infinite; }
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(2deg); }
+}
+
+/* Capability grid — Apple-ish bento */
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+}
+.cap-card {
+  grid-column: span 2;
+  background: var(--bg-alt);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  min-height: 320px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 260ms cubic-bezier(.2,.7,.2,1), background 260ms ease;
+  position: relative; overflow: hidden;
+}
+.cap-card:hover { transform: translateY(-3px); }
+.cap-card.feature { grid-column: span 3; background: var(--sage-deep); color: #fff; min-height: 380px; }
+.cap-card.feature .cap-title { color: #fff; }
+.cap-card.feature .cap-desc { color: rgba(255,255,255,0.72); }
+.cap-card.tan { background: var(--earth-soft); }
+.cap-card.sage { background: var(--sage-soft); }
+.cap-card.cream { background: var(--earth); }
+.cap-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); font-weight: 600; }
+.cap-card.feature .cap-eyebrow { color: rgba(255,255,255,0.65); }
+.cap-title { font-family: "Inter Tight", "Inter", sans-serif; font-size: 28px; letter-spacing: -0.02em; line-height: 1.1; margin: 10px 0 8px; font-weight: 600; }
+.cap-desc { font-size: 14.5px; line-height: 1.45; color: var(--ink-2); margin: 0; }
+.cap-icon { width: 52px; height: 52px; stroke: var(--sage-deep); fill: none; stroke-width: 1.4; margin-bottom: 10px; }
+.cap-card.feature .cap-icon { stroke: var(--sage-soft); }
+.cap-card.feature .cap-icon-large { width: 120px; height: 120px; stroke-width: 1.1; align-self: flex-end; margin-top: 20px; }
+
+/* Sections split */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.split.inv { direction: rtl; }
+.split.inv > * { direction: ltr; }
+.split-media {
+  aspect-ratio: 4/5;
+  background: var(--bg-sage);
+  border-radius: var(--radius-lg);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.split-media svg { width: 60%; height: 60%; }
+
+/* Detail page hero */
+.detail-hero {
+  padding: 64px 0 48px;
+  background: linear-gradient(180deg, var(--bg-sage) 0%, var(--bg) 100%);
+  border-bottom: 1px solid var(--line);
+}
+.detail-hero .container { position: relative; }
+.detail-hero h1 { font-size: clamp(40px, 6vw, 68px); margin-bottom: 20px; max-width: 780px; }
+.detail-hero p { font-size: 19px; max-width: 680px; color: var(--ink-2); }
+.detail-icon { position: absolute; right: 22px; top: -16px; width: 110px; height: 110px; opacity: 0.9; }
+
+/* Full-bleed hero image below detail hero */
+.hero-image {
+  width: 100%;
+  aspect-ratio: 21/9;
+  max-height: 560px;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.9);
+}
+.hero-image-wrap { overflow: hidden; background: var(--bg-alt); }
+
+/* Image gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 60px 0 20px;
+}
+.gallery figure { margin: 0; }
+.gallery img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  display: block;
+}
+.gallery figcaption {
+  font-size: 13px;
+  color: var(--ink-3);
+  margin-top: 10px;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 700px) { .gallery { grid-template-columns: 1fr; } }
+
+/* Team photo */
+.team-photo {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: var(--radius);
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* Bulleted content blocks */
+.content-grid {
+  display: grid; grid-template-columns: 260px 1fr; gap: 80px;
+  margin: 72px 0;
+}
+.content-grid .label { color: var(--ink-3); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+.service-list { list-style: none; padding: 0; margin: 0; }
+.service-list li {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 18px;
+  color: var(--ink);
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.service-list li:last-child { border-bottom: 0; }
+.service-list .bullet {
+  flex: 0 0 28px; height: 28px; border-radius: 999px;
+  background: var(--sage-soft); color: var(--sage-deep);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+
+/* Team */
+.team-grid {
+  display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px;
+}
+.team-card {
+  grid-column: span 6;
+  background: var(--bg-alt);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  display: flex; flex-direction: column; gap: 18px;
+}
+.team-card.feature { grid-column: span 12; background: var(--sage-soft); }
+.team-role { font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--sage-deep); font-weight: 600; }
+.team-name { font-family: "Inter Tight", "Inter", sans-serif; font-size: clamp(26px, 2.6vw, 34px); letter-spacing: -0.02em; margin: 0; font-weight: 600; }
+.creds { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-direction: column; gap: 10px; }
+.creds li { font-size: 14.5px; color: var(--ink-2); padding-left: 18px; position: relative; line-height: 1.5; }
+.creds li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 1.5px; background: var(--sage-deep); }
+.creds li.highlight { color: var(--ink); }
+.creds li.highlight::before { background: var(--earth); height: 2px; }
+.team-collab {
+  grid-column: span 12;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+}
+.team-collab h3 { margin-bottom: 20px; }
+.collab-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.collab-list > div { padding: 14px 0; border-top: 1px solid var(--line); }
+.collab-list strong { font-weight: 600; display: block; margin-bottom: 4px; }
+.collab-list span { font-size: 14.5px; color: var(--ink-2); }
+
+/* Contact */
+.contact-grid {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px;
+}
+.contact-field {
+  padding: 22px 0; border-bottom: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center; gap: 20px;
+}
+.contact-field .k { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-3); font-weight: 600; }
+.contact-field .v { font-size: 17px; color: var(--ink); text-align: right; }
+.contact-field .v a { color: var(--sage-deep); border-bottom: 1px solid transparent; transition: border-color 180ms ease; }
+.contact-field .v a:hover { border-bottom-color: var(--sage-deep); }
+.map-card {
+  background: var(--bg-sage);
+  border-radius: var(--radius-lg);
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  position: relative;
+}
+.map-card iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.4) contrast(0.95); }
+.map-open {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(28,29,26,0.10);
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  z-index: 2;
+}
+.map-open:hover {
+  transform: translateY(-1px);
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(28,29,26,0.14);
+}
+.map-open svg { color: var(--sage-deep); flex-shrink: 0; }
+
+/* Origen / Quienes somos */
+.story {
+  max-width: 780px; margin: 0 auto; text-align: left;
+}
+.story p { font-size: 21px; line-height: 1.55; color: var(--ink); margin-bottom: 26px; letter-spacing: -0.005em; }
+.story .drop { font-size: 56px; line-height: 1; float: left; padding: 4px 12px 0 0; font-family: "Inter Tight", sans-serif; font-weight: 600; color: var(--sage-deep); }
+.timeline {
+  margin-top: 80px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+}
+.timeline-item {
+  padding: 30px; border-radius: var(--radius);
+  background: var(--bg-alt);
+}
+.timeline-year { font-family: "Inter Tight", sans-serif; font-size: 44px; letter-spacing: -0.03em; font-weight: 600; color: var(--sage-deep); line-height: 1; margin-bottom: 10px; }
+.timeline-item p { font-size: 15px; margin: 0; }
+
+/* Resources / Tech band */
+.tech-band { background: var(--ink); color: #fff; padding: 100px 0; border-radius: 32px; margin: 40px 22px; }
+.tech-band .container { padding: 0 40px; }
+.tech-band h2 { color: #fff; max-width: 760px; margin-bottom: 40px; }
+.tech-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px 40px; }
+.tech-item { padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.15); }
+.tech-item h4 { color: #fff; font-size: 16px; margin-bottom: 6px; }
+.tech-item p { color: rgba(255,255,255,0.6); font-size: 13.5px; margin: 0; }
+
+/* Footer */
+footer {
+  padding: 80px 0 40px;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+.foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+.foot-brand { display: flex; gap: 14px; align-items: flex-start; }
+.foot-brand img { width: 44px; height: 44px; object-fit: contain; }
+.foot-brand strong { display: block; font-size: 15px; letter-spacing: -0.01em; }
+.foot-brand span { font-size: 13.5px; color: var(--ink-3); }
+.foot-col h5 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); font-weight: 600; margin: 0 0 16px; }
+.foot-col a { display: block; padding: 6px 0; font-size: 14.5px; color: var(--ink-2); }
+.foot-col a:hover { color: var(--ink); }
+.foot-bottom {
+  padding-top: 30px; border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  font-size: 13px; color: var(--ink-3);
+}
+
+/* Utility */
+.center { text-align: center; }
+.max-720 { max-width: 720px; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.mt-24 { margin-top: 24px; }
+.mb-64 { margin-bottom: 64px; }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .nav-links { display: none; }
+  .nav-burger { display: block; }
+  .cap-grid { grid-template-columns: repeat(2, 1fr); }
+  .cap-card, .cap-card.feature { grid-column: span 1; min-height: 280px; }
+  .cap-card.feature { grid-column: span 2; }
+  .split { grid-template-columns: 1fr; gap: 32px; }
+  .content-grid { grid-template-columns: 1fr; gap: 24px; margin: 48px 0; }
+  .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+  .team-grid { grid-template-columns: 1fr; gap: 16px; }
+  .team-card, .team-card.feature { grid-column: span 1; padding: 28px; }
+  .foot-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .timeline { grid-template-columns: 1fr; }
+  .tech-grid { grid-template-columns: repeat(2, 1fr); }
+  .tech-band { margin: 20px 14px; padding: 64px 0; }
+  .tech-band .container { padding: 0 24px; }
+  section { padding: 64px 0; }
+  .collab-list { grid-template-columns: 1fr; }
+  .detail-icon { width: 70px; height: 70px; top: -6px; }
+}
+@media (max-width: 520px) {
+  .cap-grid { grid-template-columns: 1fr; }
+  .cap-card, .cap-card.feature { grid-column: span 1; }
+  .foot-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#inicio" data-nav>
+      <img src="assets/logo-globe.png" alt="" />
+      <span>IMGA, S.L.P.</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#inicio" data-nav>Inicio</a></li>
+      <li>
+        <a href="#nuestro-trabajo" data-nav>Nuestro trabajo
+          <svg class="caret" viewBox="0 0 10 10"><path d="M2 4l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+        </a>
+        <div class="dropdown">
+          <a href="#mineria" data-nav>Minería y Geología</a>
+          <a href="#aguas" data-nav>Aguas</a>
+          <a href="#medioambiental" data-nav>Medioambiental</a>
+          <a href="#topografia" data-nav>Topografía</a>
+          <a href="#derecho" data-nav>Derecho Minero y Ambiental</a>
+          <a href="#industria" data-nav>Industria</a>
+        </div>
+      </li>
+      <li><a href="#equipo" data-nav>Equipo</a></li>
+      <li><a href="#contacto" data-nav>Contacto</a></li>
+      <li><a href="#origen" data-nav>Origen</a></li>
+    </ul>
+    <button class="nav-burger" id="burger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#inicio" data-nav>Inicio</a>
+  <div class="section-label">Nuestro trabajo</div>
+  <a href="#nuestro-trabajo" data-nav>Todas las áreas</a>
+  <a class="sub" href="#mineria" data-nav>Minería y Geología</a>
+  <a class="sub" href="#aguas" data-nav>Aguas</a>
+  <a class="sub" href="#medioambiental" data-nav>Medioambiental</a>
+  <a class="sub" href="#topografia" data-nav>Topografía</a>
+  <a class="sub" href="#derecho" data-nav>Derecho Minero y Ambiental</a>
+  <a class="sub" href="#industria" data-nav>Industria</a>
+  <a href="#equipo" data-nav>Equipo</a>
+  <a href="#contacto" data-nav>Contacto</a>
+  <a href="#origen" data-nav>Origen</a>
+</div>
+
+<main>
+
+<section class="page active" id="inicio" data-screen-label="Inicio" style="height: 4000px">
+  <div class="hero" style="align-items: center; padding: 10px 22px 80px">
+    <div class="hero-globe"><img src="assets/logo-globe.png" alt="" /></div>
+    <div class="hero-inner">
+      <span class="eyebrow">Ingeniería · Minera · Geológica · Ambiental</span>
+      <h1 class="hero-company">
+        INGENIERÍA MINERA<br/>
+        GEOLÓGICA Y AMBIENTAL<br/>
+        <span class="hero-company-tag">S.L.P.</span>
+        <span class="muted">Desde 1992.</span>
+      </h1>
+      <p class="lead">Tres décadas diseñando, dirigiendo y defendiendo proyectos de minería, aguas, medio ambiente, topografía e industria con rigor técnico y mirada jurídica.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#nuestro-trabajo" data-nav>Nuestro trabajo <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="#contacto" data-nav>Hablar con el equipo</a>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:40px;">
+        <div style="max-width:640px;">
+          <span class="eyebrow">Áreas de actuación</span>
+          <h2>Multiples disciplinas,<br/>un mismo criterio técnico.</h2>
+        </div>
+        <a class="btn btn-ghost" href="#nuestro-trabajo" data-nav>Ver todas <span class="arrow">→</span></a>
+      </div>
+
+      <div class="cap-grid">
+        <a class="cap-card feature" href="#mineria" data-nav>
+          <div>
+            <div class="cap-eyebrow">01 · Destacado</div>
+            <div class="cap-title">Minería y Geología</div>
+            <p class="cap-desc">Proyectos de apertura, ampliación, restauración, dirección facultativa y estudios de yacimiento.</p>
+          </div>
+          <svg class="cap-icon cap-icon-large" viewBox="0 0 120 120"><path d="M10 92 L40 52 L60 78 L82 36 L110 92 Z"/><path d="M28 68 L40 52 L52 68"/><circle cx="92" cy="30" r="5"/></svg>
+        </a>
+
+        <a class="cap-card tan" href="#aguas" data-nav>
+          <div>
+            <svg class="cap-icon" viewBox="0 0 52 52"><path d="M26 6 C 26 6, 10 26, 10 34 A 16 16 0 0 0 42 34 C 42 26, 26 6, 26 6 Z"/><path d="M18 34 C 20 38, 22 40, 26 40"/></svg>
+            <div class="cap-title">Aguas</div>
+            <p class="cap-desc">Concesiones, pozos, vertidos y estudios hidrogeológicos.</p>
+          </div>
+        </a>
+
+        <a class="cap-card sage" href="#medioambiental" data-nav>
+          <div>
+            <svg class="cap-icon" viewBox="0 0 52 52"><path d="M44 8 C 30 10, 12 22, 10 42 C 28 42, 44 30, 44 8 Z"/><path d="M14 40 C 22 30, 32 22, 40 14"/></svg>
+            <div class="cap-title">Medio Ambiente</div>
+            <p class="cap-desc">Estudios de impacto, AAI y vertederos.</p>
+          </div>
+        </a>
+
+        <a class="cap-card" href="#topografia" data-nav>
+          <div>
+            <svg class="cap-icon" viewBox="0 0 52 52"><path d="M6 40 L20 22 L30 34 L46 14"/><circle cx="20" cy="22" r="2.4" fill="currentColor"/><circle cx="30" cy="34" r="2.4" fill="currentColor"/><circle cx="46" cy="14" r="2.4" fill="currentColor"/><path d="M6 44 L46 44"/></svg>
+            <div class="cap-title">Topografía</div>
+            <p class="cap-desc">Levantamientos y replanteos de obra civil y minera.</p>
+          </div>
+        </a>
+
+        <a class="cap-card cream" href="#derecho" data-nav>
+          <div>
+            <svg class="cap-icon" viewBox="0 0 52 52"><path d="M26 8 L26 44"/><path d="M10 44 L42 44"/><path d="M10 20 L26 14 L42 20"/><path d="M10 20 L6 32 A 6 6 0 0 0 18 32 L14 20"/><path d="M42 20 L38 32 A 6 6 0 0 0 50 32 L46 20"/></svg>
+            <div class="cap-title">Derecho Minero y Ambiental</div>
+            <p class="cap-desc">Asesoramiento, alegaciones y contenciosos.</p>
+          </div>
+        </a>
+
+        <a class="cap-card" href="#industria" data-nav style="grid-column: span 2;">
+          <div>
+            <svg class="cap-icon" viewBox="0 0 52 52"><circle cx="26" cy="26" r="6"/><path d="M26 8 L26 14 M26 38 L26 44 M8 26 L14 26 M38 26 L44 26 M13 13 L17 17 M35 35 L39 39 M13 39 L17 35 M35 17 L39 13"/></svg>
+            <div class="cap-title">Industria</div>
+            <p class="cap-desc">Autorizaciones y direcciones de obra de instalaciones industriales.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="split">
+        <div>
+          <span class="eyebrow">Presentación</span>
+          <h2>Continuidad de un oficio técnico iniciado en 1992.</h2>
+          <p style="font-size:18px; color:var(--ink-2); margin-top:24px;">Ingeniería Minera, Geológica y Ambiental, S.L.P. nace como continuidad y desarrollo de la empresa GEOTECMA, S.L., que inicia su actividad en la ciudad de Castellón en el año 1992.</p>
+          <p style="font-size:18px; color:var(--ink-2);">Su campo de actuación se centra fundamentalmente en las áreas relacionadas con la Ingeniería de Minas, Ingeniería Industrial, Geología Aplicada, Topografía, Medio Ambiente y Derecho Ambiental y Minero.</p>
+          <a class="btn btn-ghost mt-24" href="#origen" data-nav>Nuestra historia <span class="arrow">→</span></a>
+        </div>
+        <div class="split-media" style="background: var(--sage-deep);">
+          <svg viewBox="0 0 200 200" style="width:70%; height:70%;">
+            <circle cx="100" cy="100" r="78" fill="none" stroke="#D8E0CE" stroke-width="1"/>
+            <ellipse cx="100" cy="100" rx="78" ry="30" fill="none" stroke="#D8E0CE" stroke-width="0.7"/>
+            <ellipse cx="100" cy="100" rx="30" ry="78" fill="none" stroke="#D8E0CE" stroke-width="0.7"/>
+            <path d="M40 80 C 60 70, 80 90, 100 80 S 140 70, 160 84 L 160 120 C 140 110, 110 125, 90 115 S 50 110, 40 120 Z" fill="#D8E0CE" opacity="0.5"/>
+            <circle cx="100" cy="100" r="78" fill="none" stroke="#D8E0CE" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tech-band">
+    <div class="container">
+      <span class="eyebrow" style="color:var(--sage-soft);">Medios humanos y técnicos</span>
+      <h2>Gabinete equipado y equipo titulado.</h2>
+      <div class="tech-grid">
+        <div class="tech-item"><h4>Estación total TOPCON GTS</h4><p>Topografía de precisión.</p></div>
+        <div class="tech-item"><h4>GPS centimétrico TOPCON</h4><p>Replanteos y levantamientos.</p></div>
+        <div class="tech-item"><h4>Prospección geoeléctrica</h4><p>Equipo GEOTRON.</p></div>
+        <div class="tech-item"><h4>Vehículo todoterreno</h4><p>Trabajos de campo.</p></div>
+        <div class="tech-item"><h4>Análisis de aguas móvil</h4><p>Parámetros físicos in situ.</p></div>
+        <div class="tech-item"><h4>Captación de polvo</h4><p>Medición personal.</p></div>
+        <div class="tech-item"><h4>DRONE</h4><p>Vuelo para fotogrametría.</p></div>
+        <div class="tech-item"><h4>Gabinete propio</h4><p>Local de 90 m² en Castellón.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container center">
+      <span class="eyebrow">Hablemos</span>
+      <h2 class="max-720 mx-auto">¿Un proyecto en mente?<br/>Nuestro equipo lo estudia.</h2>
+      <p class="max-720 mx-auto" style="margin-top:16px;">Minería, aguas, impacto ambiental, industria, topografía o derecho. Cuéntanos qué necesitas y valoramos el encaje.</p>
+      <div class="hero-cta" style="margin-top:32px;">
+        <a class="btn btn-primary" href="#contacto" data-nav>Contactar <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="#equipo" data-nav>Conoce al equipo</a>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section class="page" id="nuestro-trabajo" data-screen-label="Nuestro trabajo">
+  <div class="detail-hero">
+    <div class="container">
+      <span class="eyebrow">Campos de actuación</span>
+      <h1>Nuestro trabajo.</h1>
+      <p>Dentro de cada área la sociedad ofrece un amplio abanico de trabajos técnicos, administrativos y jurídicos. Seis disciplinas con una misma forma de hacer.</p>
+    </div>
+  </div>
+  <section>
+    <div class="container">
+      <div class="cap-grid">
+        <a class="cap-card feature" href="#mineria" data-nav>
+          <div>
+            <div class="cap-eyebrow area-eyebrow">Minería · Geología</div>
+            <div class="cap-title">Proyectos, dirección facultativa y restauración.</div>
+            <p class="cap-desc">Proyectos de apertura, ampliaciones, restauración integral, dirección facultativa, estudios geotécnicos y de yacimientos.</p>
+          </div>
+          <svg class="cap-icon cap-icon-large" viewBox="0 0 120 120"><path d="M10 92 L40 52 L60 78 L82 36 L110 92 Z"/><path d="M28 68 L40 52 L52 68"/><circle cx="92" cy="30" r="5"/></svg>
+        </a>
+        <a class="cap-card tan" href="#aguas" data-nav>
+          <div>
+            <svg class="cap-icon" viewBox="0 0 52 52"><path d="M26 6 C 26 6, 10 26, 10 34 A 16 16 0 0 0 42 34 C 42 26, 26 6, 26 6 Z"/></svg>
+            <div class="cap-eyebrow area-eyebrow">Aguas · Hidrogeología</div>
+            <div class="cap-title">Aguas.</div>
+            <p class="cap-desc">Concesiones, pozos, galerías, vertidos y derechos mineros sobre aguas minero-naturales.</p>
+          </div>
+        </a>
+        <a class="cap-card sage" href="#medioambiental" data-nav>
+          <div>
+            <svg class="cap-icon" viewBox="0 0 52 52"><path d="M44 8 C 30 10, 12 22, 10 42 C 28 42, 44 30, 44 8 Z"/></svg>
+            <div class="cap-eyebrow area-eyebrow">Medio Ambiente · Impacto</div>
+            <div class="cap-title">Medio Ambiente.</div>
+            <p class="cap-desc">Estudios de impacto, Autorizaciones Ambientales Integradas y vertederos.</p>
+          </div>
+        </a>
+        <a class="cap-card" href="#topografia" data-nav>
+          <div>
+            <svg class="cap-icon" viewBox="0 0 52 52"><path d="M6 40 L20 22 L30 34 L46 14"/><circle cx="20" cy="22" r="2.4" fill="currentColor"/><circle cx="30" cy="34" r="2.4" fill="currentColor"/><circle cx="46" cy="14" r="2.4" fill="currentColor"/></svg>
+            <div class="cap-eyebrow area-eyebrow">Topografía · Replanteo</div>
+            <div class="cap-title">Topografía.</div>
+            <p class="cap-desc">Levantamientos y replanteos de obras civiles, mineras y medioambientales.</p>
+          </div>
+        </a>
+        <a class="cap-card cream" href="#derecho" data-nav>
+          <div>
+            <svg class="cap-icon" viewBox="0 0 52 52"><path d="M26 8 L26 44"/><path d="M10 44 L42 44"/><path d="M10 20 L26 14 L42 20"/><path d="M10 20 L6 32 A 6 6 0 0 0 18 32 L14 20"/><path d="M42 20 L38 32 A 6 6 0 0 0 50 32 L46 20"/></svg>
+            <div class="cap-eyebrow area-eyebrow">Derecho · Minero · Ambiental</div>
+            <div class="cap-title">Derecho Minero y Ambiental.</div>
+            <p class="cap-desc">Departamento jurídico para alegaciones y contenciosos administrativos.</p>
+          </div>
+        </a>
+        <a class="cap-card" href="#industria" data-nav>
+          <div>
+            <svg class="cap-icon" viewBox="0 0 52 52"><circle cx="26" cy="26" r="6"/><path d="M26 8 L26 14 M26 38 L26 44 M8 26 L14 26 M38 26 L44 26 M13 13 L17 17 M35 35 L39 39 M13 39 L17 35 M35 17 L39 13"/></svg>
+            <div class="cap-eyebrow area-eyebrow">Industria · Instalaciones</div>
+            <div class="cap-title">Industria.</div>
+            <p class="cap-desc">Autorizaciones de puesta en marcha y direcciones de obra industrial.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section class="page" id="mineria" data-screen-label="Minería y Geología">
+  <div class="detail-hero">
+    <div class="container">
+      <span class="eyebrow">4.1 · Nuestro trabajo</span>
+      <h1>Minería y Geología.</h1>
+      <p>Proyectos técnicos, restauración y dirección facultativa de explotaciones mineras, con la capa jurídica y geológica que acompaña toda su vida útil.</p>
+      <svg class="detail-icon" viewBox="0 0 120 120" fill="none" stroke="#46583F" stroke-width="1.4"><path d="M10 92 L40 52 L60 78 L82 36 L110 92 Z"/><path d="M28 68 L40 52 L52 68"/><circle cx="92" cy="30" r="5"/></svg>
+    </div>
+  </div>
+  <div class="hero-image-wrap"><img class="hero-image" src="assets/mineria-hero.jpg" alt="Explotación minera a cielo abierto" /></div>
+  <div class="container">
+    <div class="content-grid">
+      <div><div class="label">Servicios</div></div>
+      <ul class="service-list">
+        <li><span class="bullet">01</span>Proyectos Mineros de apertura, modificación y ampliación de explotaciones mineras.</li>
+        <li><span class="bullet">02</span>Elaboración de Planes de Restauración Integral en explotaciones mineras.</li>
+        <li><span class="bullet">03</span>Estudios de Impacto Ambiental para la obtención de permisos de explotación.</li>
+        <li><span class="bullet">04</span>Dirección Facultativa de explotaciones mineras.</li>
+        <li><span class="bullet">05</span>Alegaciones y contenciosos jurídicos en materia minera.</li>
+        <li><span class="bullet">06</span>Dirección y redacción de proyectos de voladuras controladas para obra civil y minera.</li>
+        <li><span class="bullet">07</span>Estudios de yacimientos mineros.</li>
+        <li><span class="bullet">08</span>Estudios geotécnicos y geológicos.</li>
+      </ul>
+    </div>
+    <div class="gallery">
+      <figure><img src="assets/sub-mineria.jpg" alt="Vista aérea de explotación minera" /><figcaption>Explotación a cielo abierto · vista aérea</figcaption></figure>
+      <figure><img src="assets/sub-topo.jpg" alt="Levantamiento topográfico de cantera" /><figcaption>Reconocimiento de yacimiento</figcaption></figure>
+      <figure><img src="assets/sub-aguas.jpg" alt="Equipo de sondeos" /><figcaption>Sondeos y prospecciones</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="aguas" data-screen-label="Aguas">
+  <div class="detail-hero" style="background: linear-gradient(180deg, var(--earth-soft) 0%, var(--bg) 100%);">
+    <div class="container">
+      <span class="eyebrow">4.2 · Nuestro trabajo</span>
+      <h1>Aguas.</h1>
+      <p>Captación, derechos, vertidos y protección. Tramitación ante las Confederaciones Hidrográficas y estudios hidrogeológicos de campo y gabinete.</p>
+      <svg class="detail-icon" viewBox="0 0 52 52" fill="none" stroke="#46583F" stroke-width="1.4"><path d="M26 6 C 26 6, 10 26, 10 34 A 16 16 0 0 0 42 34 C 42 26, 26 6, 26 6 Z"/><path d="M18 34 C 20 38, 22 40, 26 40"/></svg>
+    </div>
+  </div>
+  <div class="hero-image-wrap"><img class="hero-image" src="assets/aguas-hero.jpg" alt="Sondeo para captación de aguas" /></div>
+  <div class="container">
+    <div class="content-grid">
+      <div><div class="label">Servicios</div></div>
+      <ul class="service-list">
+        <li><span class="bullet">01</span>Proyectos de Concesiones de Aguas Subterráneas ante las Confederaciones Hidrográficas.</li>
+        <li><span class="bullet">02</span>Proyecto y Dirección de Obra de pozos, galerías y cualquier obra subterránea para la captación de aguas subterráneas.</li>
+        <li><span class="bullet">03</span>Autorización de vertido de aguas residuales industriales y urbanas ante las Confederaciones Hidrográficas.</li>
+        <li><span class="bullet">04</span>Estudios hidrogeológicos varios.</li>
+        <li><span class="bullet">05</span>Elaboración de perímetros de protección.</li>
+        <li><span class="bullet">06</span>Autorización de derechos mineros relacionados con las aguas minero-naturales y medicinales. Declaración de aguas.</li>
+      </ul>
+    </div>
+    <div class="gallery" style="grid-template-columns: 1fr;">
+      <figure><img src="assets/sub-aguas.jpg" alt="Equipo de sondeos de captación" style="aspect-ratio: 16/9;" /><figcaption>Equipo de sondeos en obra — captación de aguas subterráneas</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="medioambiental" data-screen-label="Medioambiental">
+  <div class="detail-hero" style="background: linear-gradient(180deg, var(--sage-soft) 0%, var(--bg) 100%);">
+    <div class="container">
+      <span class="eyebrow">4.3 · Nuestro trabajo</span>
+      <h1>Medioambiental.</h1>
+      <p>Dentro de este campo son innumerables las actividades realizadas por la empresa. Impacto ambiental, autorizaciones integradas y gestión de residuos.</p>
+      <svg class="detail-icon" viewBox="0 0 52 52" fill="none" stroke="#46583F" stroke-width="1.4"><path d="M44 8 C 30 10, 12 22, 10 42 C 28 42, 44 30, 44 8 Z"/><path d="M14 40 C 22 30, 32 22, 40 14"/></svg>
+    </div>
+  </div>
+  <div class="hero-image-wrap"><img class="hero-image" src="assets/medio-hero.jpg" alt="Vista aérea de actuación medioambiental" /></div>
+  <div class="container">
+    <div class="content-grid">
+      <div><div class="label">Servicios</div></div>
+      <ul class="service-list">
+        <li><span class="bullet">01</span>Elaboración de estudios de impacto ambiental en diferentes campos de actividad.</li>
+        <li><span class="bullet">02</span>Autorizaciones Ambientales Integradas de diferentes actividades.</li>
+        <li><span class="bullet">03</span>Proyectos de aperturas de vertederos de residuos: inertes, inertizados y no peligrosos.</li>
+      </ul>
+    </div>
+    <div style="margin-top: 60px;">
+      <span class="eyebrow">Caso de estudio</span>
+      <h3 style="margin-bottom: 8px;">Restauración integral — seguimiento aéreo 2003 · 2009 · 2019</h3>
+      <p style="color: var(--ink-2); margin-bottom: 20px; max-width: 680px;">Tres vuelos comparan el estado inicial, una fase intermedia y la recuperación progresiva del terreno tras la aplicación del Plan de Restauración.</p>
+    </div>
+    <div class="gallery">
+      <figure><img src="assets/sub-medio-2003.jpg" alt="Vista aérea 2003" /><figcaption>2003 · Estado inicial</figcaption></figure>
+      <figure><img src="assets/sub-medio-2009.jpg" alt="Vista aérea 2009" /><figcaption>2009 · Fase intermedia</figcaption></figure>
+      <figure><img src="assets/sub-medio-2019.jpg" alt="Vista aérea 2019" /><figcaption>2019 · Recuperación</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="topografia" data-screen-label="Topografía">
+  <div class="detail-hero">
+    <div class="container">
+      <span class="eyebrow">4.5 · Nuestro trabajo</span>
+      <h1>Topografía.</h1>
+      <p>Precisión milimétrica para el territorio. Instrumentación TOPCON y GPS centimétrico para obra civil, minera y medioambiental.</p>
+      <svg class="detail-icon" viewBox="0 0 52 52" fill="none" stroke="#46583F" stroke-width="1.4"><path d="M6 40 L20 22 L30 34 L46 14"/><circle cx="20" cy="22" r="2.4" fill="#46583F"/><circle cx="30" cy="34" r="2.4" fill="#46583F"/><circle cx="46" cy="14" r="2.4" fill="#46583F"/><path d="M6 44 L46 44"/></svg>
+    </div>
+  </div>
+  <div class="hero-image-wrap"><img class="hero-image" src="assets/topo-hero.jpg" alt="Topógrafo con GPS TOPCON sobre cantera" /></div>
+  <div class="container">
+    <div class="content-grid">
+      <div><div class="label">Servicios</div></div>
+      <ul class="service-list">
+        <li><span class="bullet">01</span>Levantamientos topográficos de todo tipo de obras civiles, mineras y medioambientales.</li>
+        <li><span class="bullet">02</span>Replanteos de obra.</li>
+        <li><span class="bullet">03</span>Vuelos de fotogrametría con dron propio.</li>
+        <li><span class="bullet">04</span>Trabajos con estación total TOPCON GTS y GPS centimétrico TOPCON.</li>
+      </ul>
+    </div>
+    <div class="gallery" style="grid-template-columns: 1fr;">
+      <figure><img src="assets/sub-topo.jpg" alt="Modelo 3D de cantera por fotogrametría con dron" style="aspect-ratio: 21/9;" /><figcaption>Modelo 3D fotogramétrico a partir de vuelo con dron</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="derecho" data-screen-label="Derecho Minero y Ambiental">
+  <div class="detail-hero" style="background: linear-gradient(180deg, var(--earth) 0%, var(--bg) 100%);">
+    <div class="container">
+      <span class="eyebrow">4.6 · Nuestro trabajo</span>
+      <h1>Derecho Minero y Ambiental.</h1>
+      <p>En nuestra empresa existe un departamento jurídico que asesora, presenta alegaciones y lleva contenciosos administrativos relacionados con todas las actividades que realiza la sociedad.</p>
+      <svg class="detail-icon" viewBox="0 0 52 52" fill="none" stroke="#46583F" stroke-width="1.4"><path d="M26 8 L26 44"/><path d="M10 44 L42 44"/><path d="M10 20 L26 14 L42 20"/><path d="M10 20 L6 32 A 6 6 0 0 0 18 32 L14 20"/><path d="M42 20 L38 32 A 6 6 0 0 0 50 32 L46 20"/></svg>
+    </div>
+  </div>
+  <div class="container">
+    <div class="content-grid">
+      <div><div class="label">Servicios</div></div>
+      <ul class="service-list">
+        <li><span class="bullet">01</span>Asesoramiento jurídico en materia minera y ambiental.</li>
+        <li><span class="bullet">02</span>Presentación de alegaciones en procedimientos administrativos.</li>
+        <li><span class="bullet">03</span>Contenciosos administrativos relacionados con las actividades de la sociedad.</li>
+        <li><span class="bullet">04</span>Tramitación integral de permisos y autorizaciones.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="industria" data-screen-label="Industria">
+  <div class="detail-hero">
+    <div class="container">
+      <span class="eyebrow">4.4 · Nuestro trabajo</span>
+      <h1>Industria.</h1>
+      <p>Se realizan en la empresa todas las autorizaciones relacionadas con la puesta en marcha de instalaciones industriales, incluidas las direcciones de obra.</p>
+      <svg class="detail-icon" viewBox="0 0 52 52" fill="none" stroke="#46583F" stroke-width="1.4"><circle cx="26" cy="26" r="6"/><path d="M26 8 L26 14 M26 38 L26 44 M8 26 L14 26 M38 26 L44 26 M13 13 L17 17 M35 35 L39 39 M13 39 L17 35 M35 17 L39 13"/></svg>
+    </div>
+  </div>
+  <div class="hero-image-wrap"><img class="hero-image" src="assets/industria-hero.jpg" alt="Instalación industrial" /></div>
+  <div class="container">
+    <div class="content-grid">
+      <div><div class="label">Servicios</div></div>
+      <ul class="service-list">
+        <li><span class="bullet">01</span>Autorizaciones para la puesta en marcha de instalaciones industriales.</li>
+        <li><span class="bullet">02</span>Dirección de obra industrial.</li>
+        <li><span class="bullet">03</span>Tramitación administrativa ante los órganos competentes.</li>
+      </ul>
+    </div>
+    <div class="gallery" style="grid-template-columns: 1fr;">
+      <figure><img src="assets/sub-industria.jpg" alt="Instalación industrial con chimeneas" style="aspect-ratio: 16/9;" /><figcaption>Puesta en marcha y dirección de obra industrial</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="equipo" data-screen-label="Equipo">
+  <div class="detail-hero">
+    <div class="container">
+      <span class="eyebrow">Quiénes firman los proyectos</span>
+      <h1>Equipo.</h1>
+      <p>Integrantes de la sociedad, asalariados y colaboradores. Titulaciones sumadas que cubren el ciclo completo de un proyecto técnico-jurídico.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="team-grid">
+        <div class="team-card feature">
+          <div class="team-role">Administrador único</div>
+          <h3 class="team-name">D. Andrés M. Sáez Vizcaíno</h3>
+          <ul class="creds">
+            <li class="highlight">Máster Universitario en Ingeniería de Minas — Universidad Politécnica de Cartagena · Colg. 595-LE</li>
+            <li>Premio extraordinario Fin de Máster al mejor expediente académico (UPCT).</li>
+            <li>Premio Juan Manuel Manrubia Conesa al mejor TFM (Col. Of. Ingenieros de Minas de Levante).</li>
+            <li class="highlight">Licenciado en Ciencias Geológicas — Hidrogeología y Geología Minera, Universidad de Granada · Colg. 2049</li>
+            <li class="highlight">Ingeniero de Grado en Recursos Minerales y Energía — UPCT · Colg. 1106</li>
+            <li>Premio al mejor expediente académico (Col. Of. Ingenieros de Minas y Energía de Cartagena).</li>
+            <li>Ingeniero Técnico de Minas, esp. Sondeos y Prospecciones — Universidad de Jaén.</li>
+            <li>Ingeniero Técnico de Minas, esp. Explotaciones Mineras — Universidad de Jaén.</li>
+            <li>Técnico Superior en Prevención de Riesgos Laborales — Universidad de Oviedo.</li>
+            <li>Coordinador de Seguridad y Salud en obras de construcción.</li>
+          </ul>
+        </div>
+
+        <div class="team-card">
+          <div class="team-role">Gerente</div>
+          <h3 class="team-name">Dña. María Isabel López Heras</h3>
+          <ul class="creds">
+            <li class="highlight">Licenciada en Derecho — Universidad de Granada.</li>
+            <li>Escuela de Prácticas Jurídicas — Colegio de Abogados de Castellón.</li>
+          </ul>
+        </div>
+
+        <div class="team-card">
+          <img class="team-photo" src="assets/team-samuel.jpg" alt="Samuel Sáez López en cantera" />
+          <div class="team-role">Ingeniero de minas</div>
+          <h3 class="team-name">D. Samuel Sáez López</h3>
+          <ul class="creds">
+            <li class="highlight">Máster Universitario en Ingeniería de Minas — UPCT · Colg. nº 615-LE</li>
+            <li class="highlight">Graduado en Ingeniería de Recursos Minerales y Energía — UPCT · Colg. nº 1630</li>
+            <li class="highlight">Máster Universitario en Prevención de Riesgos Laborales — UFV</li>
+            <li class="highlight">PhD Student · Technology and Modeling in Civil, Mining, and Environmental Engineering — UPCT.</li>
+            <li>Premio al mejor Trabajo Fin de Grado (Col. Of. Ingenieros de Minas y Energía de Cartagena).</li>
+            <li>Premio extraordinario Fin de Grado al mejor expediente académico (UPCT).</li>
+          </ul>
+        </div>
+
+        <div class="team-collab">
+          <h3>Colaboradores</h3>
+          <div class="collab-list">
+            <div>
+              <strong>Dña. Pilar Bono Altava</strong>
+              <span>Ingeniero Técnico Industrial — Universidad de Valencia.</span>
+            </div>
+            <div>
+              <strong>D. Vicente Botella Castelló</strong>
+              <span>Ingeniero Técnico Forestal — Universidad de Valencia.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section class="page" id="contacto" data-screen-label="Contacto">
+  <div class="detail-hero">
+    <div class="container">
+      <span class="eyebrow">Hablemos</span>
+      <h1>Contacto.</h1>
+      <p>Nuestro gabinete está en Castellón. Escríbenos o llámanos y valoramos tu proyecto.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <div class="contact-field">
+            <span class="k">Razón social</span>
+            <span class="v">Ingeniería Minera, Geológica y Ambiental, S.L.P.</span>
+          </div>
+          <div class="contact-field">
+            <span class="k">Domicilio</span>
+            <span class="v">C/ Río Nalón, 4, Esc. 3, 2º X<br/>12005 Castellón</span>
+          </div>
+          <div class="contact-field">
+            <span class="k">C.I.F.</span>
+            <span class="v">B-12663845</span>
+          </div>
+          <div class="contact-field">
+            <span class="k">Administrador único</span>
+            <span class="v">D. Andrés M. Sáez Vizcaíno</span>
+          </div>
+          <div class="contact-field">
+            <span class="k">Gerente</span>
+            <span class="v">Dña. María Isabel López Heras</span>
+          </div>
+          <div class="contact-field">
+            <span class="k">Teléfono</span>
+            <span class="v"><a href="tel:+34964241316">964 241 316</a> · <a href="tel:+34689976317">689 976 317</a></span>
+          </div>
+          <div class="contact-field">
+            <span class="k">Email</span>
+            <span class="v"><a href="/cdn-cgi/l/email-protection#573639332532243e3a303617303a363e3b7934383a"><span class="__cf_email__" data-cfemail="13727d776176607a7e747253747e727a7f3d707c7e">[email&#160;protected]</span></a><br/><a href="/cdn-cgi/l/email-protection#0d7e6c6078686164606a6c4d6a606c6461236e6260"><span class="__cf_email__" data-cfemail="bac9dbd7cfdfd6d3d7dddbfaddd7dbd3d694d9d5d7">[email&#160;protected]</span></a></span>
+          </div>
+        </div>
+        <div class="map-card">
+          <iframe
+            title="Ubicación IMGA S.L.P."
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen=""
+            src="https://www.google.com/maps?q=IMGA+S.L.P+Ingenier%C3%ADa+Minera+Geol%C3%B3gica+y+Ambiental%2C+C%2F+R%C3%ADo+Nal%C3%B3n+4%2C+12005+Castell%C3%B3n&output=embed"
+          ></iframe>
+          <a class="map-open" href="https://www.google.com/maps/search/?api=1&query=IMGA+S.L.P+Ingenier%C3%ADa+Minera+Geol%C3%B3gica+y+Ambiental+Castell%C3%B3n" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.58 8-13a8 8 0 1 0-16 0c0 5.42 8 13 8 13z"/><circle cx="12" cy="9" r="2.6"/></svg>
+            <span>Abrir en Google Maps</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section class="page" id="origen" data-screen-label="Origen">
+  <div class="detail-hero">
+    <div class="container">
+      <span class="eyebrow">Quiénes somos</span>
+      <h1>Origen.</h1>
+      <p>Una trayectoria técnica que arranca en 1992 y que hoy continúa bajo las siglas IMGA, S.L.P.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="story">
+        <p><span class="drop">L</span>a sociedad Ingeniería Minera, Geológica y Ambiental, S.L.P. nace como continuidad y desarrollo de la empresa GEOTECMA, S.L., que inicia su actividad en la ciudad de Castellón en el año 1992.</p>
+        <p>Su campo de actuación se centra fundamentalmente en las áreas relacionadas con la Ingeniería de Minas, Ingeniería Industrial, Geología Aplicada, Topografía, Medio Ambiente y Derecho Ambiental y Minero.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">1992</div>
+          <h4>GEOTECMA, S.L.</h4>
+          <p>Inicio de la actividad en la ciudad de Castellón.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">Hoy</div>
+          <h4>IMGA, S.L.P.</h4>
+          <p>Continuidad y desarrollo como sociedad profesional.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">6</div>
+          <h4>Áreas técnicas</h4>
+          <p>Minería, aguas, medio ambiente, topografía, industria y derecho.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/logo-globe.png" alt="" />
+        <div>
+          <strong>IMGA, S.L.P.</strong>
+          <span>Ingeniería Minera, Geológica y Ambiental · Desde 1992. Sede en Castellón, proyectos en toda España.</span>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Trabajo</h5>
+        <a href="#mineria" data-nav>Minería y Geología</a>
+        <a href="#aguas" data-nav>Aguas</a>
+        <a href="#medioambiental" data-nav>Medioambiental</a>
+        <a href="#topografia" data-nav>Topografía</a>
+        <a href="#industria" data-nav>Industria</a>
+        <a href="#derecho" data-nav>Derecho</a>
+      </div>
+      <div class="foot-col">
+        <h5>Empresa</h5>
+        <a href="#equipo" data-nav>Equipo</a>
+        <a href="#origen" data-nav>Origen</a>
+        <a href="#contacto" data-nav>Contacto</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contacto</h5>
+        <a href="tel:+34964241316">964 241 316</a>
+        <a href="tel:+34689976317">689 976 317</a>
+        <a href="/cdn-cgi/l/email-protection#35545b514750465c585254755258545c591b565a58"><span class="__cf_email__" data-cfemail="d3b2bdb7a1b6a0babeb4b293b4beb2babffdb0bcbe">[email&#160;protected]</span></a>
+        <a href="/cdn-cgi/l/email-protection#e695878b93838a8f8b8187a6818b878f8ac885898b"><span class="__cf_email__" data-cfemail="a9dac8c4dcccc5c0c4cec8e9cec4c8c0c587cac6c4">[email&#160;protected]</span></a>
+        <span style="display:block; padding: 6px 0; font-size: 13.5px; color: var(--ink-3);">C/ Río Nalón, 4, Esc 3, 2X<br/>12005 Castellón</span>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> Ingeniería Minera, Geológica y Ambiental, S.L.P.</span>
+      <span>C.I.F. B-12663845</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script>
+// IMGA SLP — client-side router & interactions
+(function () {
+  const pages = document.querySelectorAll('.page');
+  const links = document.querySelectorAll('[data-nav]');
+
+  function showPage(id) {
+    const target = document.getElementById(id) || document.getElementById('inicio');
+    pages.forEach(p => p.classList.toggle('active', p === target));
+    links.forEach(a => {
+      const href = a.getAttribute('href') || '';
+      a.classList.toggle('active', href === '#' + target.id);
+    });
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    // close mobile menu
+    document.getElementById('mobile-menu')?.classList.remove('open');
+    document.getElementById('burger')?.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function route() {
+    const hash = (location.hash || '#inicio').replace('#', '');
+    showPage(hash);
+  }
+
+  window.addEventListener('hashchange', route);
+  window.addEventListener('DOMContentLoaded', () => {
+    route();
+
+    // burger
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('mobile-menu');
+    burger?.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      menu.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    });
+
+    // reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  });
+})();
+
+</script>
+</body>
+</html>
