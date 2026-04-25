@@ -159,14 +159,15 @@ a { color: inherit; text-decoration: none; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
 section { padding: 100px 0; }
+section.page { padding: 0; }
 section.tight { padding: 64px 0; }
 section.hero-pad { padding: 140px 0 100px; }
 
 /* Hero */
 .hero {
-  min-height: calc(100svh - var(--nav-h));
+  min-height: calc(82svh - var(--nav-h));
   display: flex; align-items: center; justify-content: center;
-  padding: 80px 22px;
+  padding: 60px 22px 90px;
   background: radial-gradient(ellipse at 50% 30%, #EEF1E7 0%, var(--bg) 60%);
   position: relative;
   overflow: hidden;
@@ -239,7 +240,7 @@ section.hero-pad { padding: 140px 0 100px; }
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
   pointer-events: none; z-index: 1;
-  opacity: 0.06;
+  opacity: 0.10;
 }
 .hero-globe img { width: min(78vmin, 720px); animation: floaty 14s ease-in-out infinite; }
 @keyframes floaty {
@@ -529,10 +530,13 @@ footer {
   .tech-band { margin: 20px 14px; padding: 64px 0; }
   .tech-band .container { padding: 0 24px; }
   section { padding: 64px 0; }
+  section.page { padding: 0; }
   .collab-list { grid-template-columns: 1fr; }
   .detail-icon { width: 70px; height: 70px; top: -6px; }
-  .hero { padding: 60px 18px; }
-  .hero h1.hero-company { font-size: clamp(26px, 7.4vw, 44px); line-height: 1.05; }
+  .hero { min-height: 0; padding: 56px 18px 72px; }
+  .hero h1.hero-company { font-size: clamp(28px, 7.6vw, 44px); line-height: 1.05; }
+  .hero-globe { opacity: 0.08; }
+  .hero-globe img { width: min(86vmin, 520px); }
   .hero-company .hero-company-tag { font-size: 0.55em; vertical-align: 0.4em; margin-left: 6px; }
   .hero-company .muted { font-size: 14px; margin-top: 14px; }
   .hero p.lead { font-size: 16px; margin-bottom: 28px; }
@@ -555,8 +559,17 @@ footer {
   .foot-grid { grid-template-columns: 1fr; }
   .tech-grid { grid-template-columns: 1fr; }
   .container { padding: 0 18px; }
-  .hero { padding: 48px 16px 56px; }
-  .hero h1.hero-company { font-size: clamp(24px, 7.8vw, 36px); }
+  .hero { padding: 44px 16px 60px; min-height: 0; }
+  .hero h1.hero-company { font-size: clamp(26px, 8.4vw, 36px); }
+  .hero-globe img { width: 88vmin; }
+  .team-photo { aspect-ratio: 4/5; }
+  .detail-hero { padding: 36px 0 28px; }
+  .detail-hero h1 { font-size: clamp(34px, 9vw, 48px); margin-bottom: 14px; }
+  .detail-hero p { font-size: 16px; }
+  .detail-icon { width: 56px; height: 56px; right: 12px; top: 4px; }
+  .hero-image-wrap { margin: 18px 12px; border-radius: 14px; }
+  .hero-image-wrap img { aspect-ratio: 4/3; }
+  .gallery img { aspect-ratio: 4/5; }
   .nav-inner { padding: 0 16px; gap: 12px; }
   .nav-brand span { font-size: 13.5px; }
   h2 { font-size: clamp(28px, 7vw, 38px); }
@@ -1100,7 +1113,7 @@ footer {
           </div>
           <div class="contact-field">
             <span class="k">Email</span>
-            <span class="v"><a href="/cdn-cgi/l/email-protection#5d3c33392f382e34303a3c1d3a303c3431733e3230"><span class="__cf_email__" data-cfemail="c0a1aea4b2a5b3a9ada7a180a7ada1a9aceea3afad">[email&#160;protected]</span></a><br/><a href="/cdn-cgi/l/email-protection#651604081000090c080204250208040c094b060a08"><span class="__cf_email__" data-cfemail="ea998b879f8f8683878d8baa8d878b8386c4898587">[email&#160;protected]</span></a></span>
+            <span class="v"><a href="/cdn-cgi/l/email-protection#04656a607661776d696365446369656d682a676b69"><span class="__cf_email__" data-cfemail="4a2b242e382f3923272d2b0a2d272b232664292527">[email&#160;protected]</span></a><br/><a href="/cdn-cgi/l/email-protection#790a18140c1c1510141e18391e14181015571a1614"><span class="__cf_email__" data-cfemail="97e4f6fae2f2fbfefaf0f6d7f0faf6fefbb9f4f8fa">[email&#160;protected]</span></a></span>
           </div>
         </div>
         <div class="map-card">
@@ -1190,8 +1203,8 @@ footer {
         <h5>Contacto</h5>
         <a href="tel:+34964241316">964 241 316</a>
         <a href="tel:+34689976317">689 976 317</a>
-        <a href="/cdn-cgi/l/email-protection#bbdad5dfc9dec8d2d6dcdafbdcd6dad2d795d8d4d6"><span class="__cf_email__" data-cfemail="c8a9a6acbaadbba1a5afa988afa5a9a1a4e6aba7a5">[email&#160;protected]</span></a>
-        <a href="/cdn-cgi/l/email-protection#6c1f0d0119090005010b0d2c0b010d0500420f0301"><span class="__cf_email__" data-cfemail="f281939f87979e9b9f9593b2959f939b9edc919d9f">[email&#160;protected]</span></a>
+        <a href="/cdn-cgi/l/email-protection#bcddd2d8ced9cfd5d1dbddfcdbd1ddd5d092dfd3d1"><span class="__cf_email__" data-cfemail="0a6b646e786f7963676d6b4a6d676b636624696567">[email&#160;protected]</span></a>
+        <a href="/cdn-cgi/l/email-protection#cab9aba7bfafa6a3a7adab8aada7aba3a6e4a9a5a7"><span class="__cf_email__" data-cfemail="2f5c4e425a4a434642484e6f48424e4643014c4042">[email&#160;protected]</span></a>
         <span style="display:block; padding: 6px 0; font-size: 13.5px; color: var(--ink-3);">C/ Río Nalón, 4, Esc 3, 2X<br/>12005 Castellón</span>
       </div>
     </div>
