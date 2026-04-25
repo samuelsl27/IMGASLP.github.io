@@ -531,11 +531,47 @@ footer {
   section { padding: 64px 0; }
   .collab-list { grid-template-columns: 1fr; }
   .detail-icon { width: 70px; height: 70px; top: -6px; }
+  .hero { padding: 60px 18px; }
+  .hero h1.hero-company { font-size: clamp(26px, 7.4vw, 44px); line-height: 1.05; }
+  .hero-company .hero-company-tag { font-size: 0.55em; vertical-align: 0.4em; margin-left: 6px; }
+  .hero-company .muted { font-size: 14px; margin-top: 14px; }
+  .hero p.lead { font-size: 16px; margin-bottom: 28px; }
+  .hero-cta { gap: 10px; }
+  .btn { padding: 12px 18px; font-size: 14.5px; }
+  .map-card { height: 320px; }
+  .map-open { top: 10px; right: 10px; padding: 8px 12px; font-size: 12px; }
+  .map-open span { display: inline; }
+  .detail-hero { padding: 48px 0 36px; }
+  .detail-hero h1 { font-size: clamp(36px, 8vw, 56px); }
+  .hero-image-wrap { margin: 24px 14px; border-radius: 18px; }
+  .hero-image-wrap img { aspect-ratio: 16/10; }
+  .gallery { gap: 14px; }
+  .creds { font-size: 14px; }
+  .area-eyebrow { font-size: 10.5px !important; letter-spacing: 0.16em !important; }
 }
 @media (max-width: 520px) {
-  .cap-grid { grid-template-columns: 1fr; }
-  .cap-card, .cap-card.feature { grid-column: span 1; }
+  .cap-grid { grid-template-columns: 1fr; gap: 12px; }
+  .cap-card, .cap-card.feature { grid-column: span 1; min-height: 220px; padding: 24px; }
   .foot-grid { grid-template-columns: 1fr; }
+  .tech-grid { grid-template-columns: 1fr; }
+  .container { padding: 0 18px; }
+  .hero { padding: 48px 16px 56px; }
+  .hero h1.hero-company { font-size: clamp(24px, 7.8vw, 36px); }
+  .nav-inner { padding: 0 16px; gap: 12px; }
+  .nav-brand span { font-size: 13.5px; }
+  h2 { font-size: clamp(28px, 7vw, 38px); }
+  .contact-field .v { font-size: 15px; word-break: break-word; }
+  .contact-field .v a { word-break: break-all; }
+  .map-card { height: 260px; }
+  .map-open span { display: none; }
+  .map-open { padding: 9px 9px; gap: 0; }
+  .map-open svg:last-of-type { display: none; }
+  .team-card { padding: 22px !important; }
+  .team-name { font-size: 22px; }
+  .timeline-item { padding: 28px 22px; }
+  .story p { font-size: 17px; }
+  .drop { font-size: 56px; line-height: 1; }
+  footer { padding-top: 48px; }
 }
 
 </style>
@@ -590,8 +626,8 @@ footer {
 
 <main>
 
-<section class="page active" id="inicio" data-screen-label="Inicio" style="height: 4000px">
-  <div class="hero" style="align-items: center; padding: 10px 22px 80px">
+<section class="page active" id="inicio" data-screen-label="Inicio">
+  <div class="hero">
     <div class="hero-globe"><img src="assets/logo-globe.png" alt="" /></div>
     <div class="hero-inner">
       <span class="eyebrow">Ingeniería · Minera · Geológica · Ambiental</span>
@@ -614,7 +650,7 @@ footer {
       <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:40px;">
         <div style="max-width:640px;">
           <span class="eyebrow">Áreas de actuación</span>
-          <h2>Multiples disciplinas,<br/>un mismo criterio técnico.</h2>
+          <h2>Seis disciplinas,<br/>un mismo criterio técnico.</h2>
         </div>
         <a class="btn btn-ghost" href="#nuestro-trabajo" data-nav>Ver todas <span class="arrow">→</span></a>
       </div>
@@ -966,7 +1002,8 @@ footer {
   <section>
     <div class="container">
       <div class="team-grid">
-        <div class="team-card feature">
+        <div class="team-card">
+          <img class="team-photo" src="assets/team-andres.jpg" alt="Andrés Sáez Vizcaíno en cantera" />
           <div class="team-role">Administrador único</div>
           <h3 class="team-name">D. Andrés M. Sáez Vizcaíno</h3>
           <ul class="creds">
@@ -984,25 +1021,25 @@ footer {
         </div>
 
         <div class="team-card">
+          <img class="team-photo" src="assets/team-samuel.jpg" alt="Samuel Sáez López en cantera" />
+          <div class="team-role">Ingeniero de minas</div>
+          <h3 class="team-name">D. Samuel Sáez López</h3>
+          <ul class="creds">
+            <li class="highlight">PhD Student · Technology and Modeling in Civil, Mining, and Environmental Engineering — UPCT.</li>
+            <li class="highlight">Máster Universitario en Prevención de Riesgos Laborales — UFV</li>
+            <li class="highlight">Máster Universitario en Ingeniería de Minas — UPCT · Colg. nº 615-LE</li>
+            <li class="highlight">Graduado en Ingeniería de Recursos Minerales y Energía — UPCT · Colg. nº 1630</li>
+            <li>Premio al mejor Trabajo Fin de Grado (Col. Of. Ingenieros de Minas y Energía de Cartagena).</li>
+            <li>Premio extraordinario Fin de Grado al mejor expediente académico (UPCT).</li>
+          </ul>
+        </div>
+
+        <div class="team-card feature">
           <div class="team-role">Gerente</div>
           <h3 class="team-name">Dña. María Isabel López Heras</h3>
           <ul class="creds">
             <li class="highlight">Licenciada en Derecho — Universidad de Granada.</li>
             <li>Escuela de Prácticas Jurídicas — Colegio de Abogados de Castellón.</li>
-          </ul>
-        </div>
-
-        <div class="team-card">
-          <img class="team-photo" src="assets/team-samuel.jpg" alt="Samuel Sáez López en cantera" />
-          <div class="team-role">Ingeniero de minas</div>
-          <h3 class="team-name">D. Samuel Sáez López</h3>
-          <ul class="creds">
-            <li class="highlight">Máster Universitario en Ingeniería de Minas — UPCT · Colg. nº 615-LE</li>
-            <li class="highlight">Graduado en Ingeniería de Recursos Minerales y Energía — UPCT · Colg. nº 1630</li>
-            <li class="highlight">Máster Universitario en Prevención de Riesgos Laborales — UFV</li>
-            <li class="highlight">PhD Student · Technology and Modeling in Civil, Mining, and Environmental Engineering — UPCT.</li>
-            <li>Premio al mejor Trabajo Fin de Grado (Col. Of. Ingenieros de Minas y Energía de Cartagena).</li>
-            <li>Premio extraordinario Fin de Grado al mejor expediente académico (UPCT).</li>
           </ul>
         </div>
 
@@ -1063,7 +1100,7 @@ footer {
           </div>
           <div class="contact-field">
             <span class="k">Email</span>
-            <span class="v"><a href="/cdn-cgi/l/email-protection#573639332532243e3a303617303a363e3b7934383a"><span class="__cf_email__" data-cfemail="13727d776176607a7e747253747e727a7f3d707c7e">[email&#160;protected]</span></a><br/><a href="/cdn-cgi/l/email-protection#0d7e6c6078686164606a6c4d6a606c6461236e6260"><span class="__cf_email__" data-cfemail="bac9dbd7cfdfd6d3d7dddbfaddd7dbd3d694d9d5d7">[email&#160;protected]</span></a></span>
+            <span class="v"><a href="/cdn-cgi/l/email-protection#5d3c33392f382e34303a3c1d3a303c3431733e3230"><span class="__cf_email__" data-cfemail="c0a1aea4b2a5b3a9ada7a180a7ada1a9aceea3afad">[email&#160;protected]</span></a><br/><a href="/cdn-cgi/l/email-protection#651604081000090c080204250208040c094b060a08"><span class="__cf_email__" data-cfemail="ea998b879f8f8683878d8baa8d878b8386c4898587">[email&#160;protected]</span></a></span>
           </div>
         </div>
         <div class="map-card">
@@ -1153,8 +1190,8 @@ footer {
         <h5>Contacto</h5>
         <a href="tel:+34964241316">964 241 316</a>
         <a href="tel:+34689976317">689 976 317</a>
-        <a href="/cdn-cgi/l/email-protection#35545b514750465c585254755258545c591b565a58"><span class="__cf_email__" data-cfemail="d3b2bdb7a1b6a0babeb4b293b4beb2babffdb0bcbe">[email&#160;protected]</span></a>
-        <a href="/cdn-cgi/l/email-protection#e695878b93838a8f8b8187a6818b878f8ac885898b"><span class="__cf_email__" data-cfemail="a9dac8c4dcccc5c0c4cec8e9cec4c8c0c587cac6c4">[email&#160;protected]</span></a>
+        <a href="/cdn-cgi/l/email-protection#bbdad5dfc9dec8d2d6dcdafbdcd6dad2d795d8d4d6"><span class="__cf_email__" data-cfemail="c8a9a6acbaadbba1a5afa988afa5a9a1a4e6aba7a5">[email&#160;protected]</span></a>
+        <a href="/cdn-cgi/l/email-protection#6c1f0d0119090005010b0d2c0b010d0500420f0301"><span class="__cf_email__" data-cfemail="f281939f87979e9b9f9593b2959f939b9edc919d9f">[email&#160;protected]</span></a>
         <span style="display:block; padding: 6px 0; font-size: 13.5px; color: var(--ink-3);">C/ Río Nalón, 4, Esc 3, 2X<br/>12005 Castellón</span>
       </div>
     </div>
